@@ -11,20 +11,16 @@ app.title = "Dashboard Layout"
 
 server = app.server
 
+# URL of the Excel file on GitHub
+url1 = 'https://github.com/dogitosanchez/livrable/raw/main/aGLP1_english.xlsx'
+url2 = 'https://github.com/dogitosanchez/livrable/raw/main/Insuline_anglais.xlsx'
 
-# Load the specific sheet 'Cas-Patients'
-data_path = '/Users/rossetantonin/Downloads/Website AGLP1/aGLP1_english.xlsx'
-cleaned_data = pd.read_excel(data_path, sheet_name='Complet')
+# Load the specific sheet 'Complet' from each file
+cleaned_data = pd.read_excel(url1, sheet_name='Complet')
+cleaned_data2 = pd.read_excel(url2, sheet_name='Complet')
 
-# Print a specific column, e.g., 'Cas CRPV'
+# Print a specific column, e.g., 'Collection Mode'
 print(cleaned_data['Collection Mode'])
-
-data_path2 = '/Users/rossetantonin/Downloads/Insuline_anglais.xlsx'
-cleaned_data2 = pd.read_excel(data_path2, sheet_name='Complet')
-
-# Print a specific column, e.g., 'Cas CRPV'
-print(cleaned_data2['Collection Method'])
-
 
 # Ensure 'Year' column is created
 cleaned_data['Year'] = pd.to_datetime(cleaned_data['Notif'], dayfirst=True).dt.year
