@@ -68,7 +68,7 @@ def create_plotly_line_graph():
     # Update hover label properties
     fig.update_traces(hoverlabel=dict(bgcolor="coral", font_size=16, font_family="Arial"))
 
-    fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases', xaxis=dict(range=[2004, 2024]),
+    fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases', xaxis=dict(range=[2011, 2024]),
                       title={'x':0.5, 'xanchor': 'center'},  # Center the title
                       height=500, autosize=True)  # Adjust height and width
 
