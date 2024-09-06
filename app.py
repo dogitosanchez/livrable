@@ -56,8 +56,8 @@ def create_plotly_insulin_line_graph():
 # Function to generate the interactive Plotly line graph
 def create_plotly_line_graph():
     # Count the number of cases per year
-    year_count = cleaned_data['Year'].value_counts().sort_index()
-
+    filtered_data = cleaned_data[cleaned_data['Year'] >= 2011]
+    year_count = filtered_data['Year'].value_counts().sort_index()
     # Create the Plotly figure
     fig = px.line(year_count, x=year_count.index, y=year_count.values, markers=True, 
                   labels={'x': 'Year', 'y': 'Number of cases'},
