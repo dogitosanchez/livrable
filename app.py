@@ -23,6 +23,16 @@ cleaned_data2 = pd.read_excel(url2, sheet_name='Complet')
 cleaned_data['Year'] = pd.to_datetime(cleaned_data['Notif'], errors='coerce', dayfirst=True).dt.year.fillna(0).astype(int)
 cleaned_data2['Year'] = pd.to_datetime(cleaned_data2['Notif'], dayfirst=True).dt.year
 
+# Load the Excel file
+df = pd.read_excel(data_path, sheet_name='Complet')
+
+# Extract the year from 'Notif' and count cases per year
+df['Year'] = pd.to_datetime(df['Notif'], dayfirst=True).dt.year
+cases_per_year = df['Year'].value_counts().sort_index()
+
+# Create a new dataframe containing the year and number of cases
+cases_per_year_df = pd.DataFrame({'Year': cases_per_year.index, 'Number of Cases': cases_per_year.values})
+
 # Function to generate the interactive Plotly line graph for Insulin data
 def create_plotly_insulin_line_graph():
     # Count the number of cases per year for insulin data
@@ -51,22 +61,21 @@ def create_plotly_insulin_line_graph():
 
 # Function to generate the interactive Plotly line graph
 def create_plotly_line_graph():
-    # Count the number of cases per year
-    filtered_data = cleaned_data.copy()
-    year_count = filtered_data['Year'].value_counts().sort_index()
-    # Create the Plotly figure
-    fig = px.line(year_count, x=year_count.index, y=year_count.values, markers=True, 
-                  labels={'x': 'Year', 'y': 'Number of cases'},
+    # Use 'Year' for x-axis and 'Number of Cases' for y-axis
+    fig = px.line(cases_per_year_df, x='Year', y='Number of Cases', markers=True,
+                  labels={'Year': 'Year', 'Number of Cases': 'Number of cases'},
                   title='Number of cases per year')
 
+    # Update the marker and line appearance
     fig.update_traces(marker=dict(size=10, color='coral'), line=dict(color='lightcoral'))
 
     # Update hover label properties
     fig.update_traces(hoverlabel=dict(bgcolor="coral", font_size=16, font_family="Arial"))
 
-    fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases', xaxis=dict(range=[2011, 2024]),
-                      title={'x':0.5, 'xanchor': 'center'},  # Center the title
-                      height=500, autosize=True)  # Adjust height and width
+    # Update the layout to include axis titles, center the title, and adjust size
+    fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases',
+                      title={'x': 0.5, 'xanchor': 'center'},  # Center the title
+                      height=500, width=600)  # Adjust height and width
 
     return fig
 
