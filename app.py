@@ -21,7 +21,7 @@ cleaned_data = pd.read_excel(url1, sheet_name='Complet')
 cleaned_data2 = pd.read_excel(url2, sheet_name='Complet')
 
 # Ensure 'Year' column is created
-cleaned_data['Year'] = pd.to_datetime(cleaned_data['Notif'], dayfirst=True).dt.year
+cleaned_data['Year'] = pd.to_datetime(cleaned_data['Notif'], errors='coerce', dayfirst=True).dt.year.fillna(0).astype(int)
 cleaned_data2['Year'] = pd.to_datetime(cleaned_data2['Notif'], dayfirst=True).dt.year
 
 # Function to generate the interactive Plotly line graph for Insulin data
