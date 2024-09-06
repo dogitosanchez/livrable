@@ -705,4 +705,6 @@ def update_aglp1_graph(selected_graph):
         return html.Div(dcc.Graph(figure=fig), style={'width': '70%', 'margin': '0 auto'})  # Center this graph
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    port = int(os.environ.get("PORT", 8050))  # Use Render's port if available, otherwise default to 8050
+    app.run_server(host='0.0.0.0', port=port, debug=True)
+
