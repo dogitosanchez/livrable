@@ -75,7 +75,7 @@ def create_plotly_line_graph():
     # Update the layout to include axis titles, center the title, and adjust size
     fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases',
                       title={'x': 0.5, 'xanchor': 'center'},  # Center the title
-                      height=500, width=600)  # Adjust height and width
+                      height=500, autosize=True)  # Adjust height and width
 
     return fig
 
