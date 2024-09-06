@@ -45,7 +45,7 @@ def create_plotly_insulin_line_graph():
     fig.update_layout(
         xaxis_title='Year', 
         yaxis_title='Number of cases', 
-        xaxis=dict(range=[2004, current_year]),  # Set x-axis range
+        xaxis=dict(range=[2004, 2024]),  # Set x-axis range
         title={'x': 0.5, 'xanchor': 'center'},  # Center the title
         height=500, 
         autosize=True
