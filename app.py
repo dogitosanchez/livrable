@@ -20,9 +20,6 @@ url2 = 'https://github.com/dogitosanchez/livrable/raw/main/Insuline_anglais.xlsx
 cleaned_data = pd.read_excel(url1, sheet_name='Complet')
 cleaned_data2 = pd.read_excel(url2, sheet_name='Complet')
 
-# Print a specific column, e.g., 'Collection Mode'
-print(cleaned_data['Collection Mode'])
-
 # Ensure 'Year' column is created
 cleaned_data['Year'] = pd.to_datetime(cleaned_data['Notif'], dayfirst=True).dt.year
 cleaned_data2['Year'] = pd.to_datetime(cleaned_data2['Notif'], dayfirst=True).dt.year
