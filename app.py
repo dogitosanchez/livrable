@@ -4,7 +4,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.express as px
-
+from flask_caching import Cache
 
 # Initialize the Dash app with suppressed callback exceptions
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
@@ -12,16 +12,21 @@ app.title = "Dashboard Layout"
 
 server = app.server
 
-# URL of the Excel file on GitHub
-url1 = 'https://github.com/dogitosanchez/livrable/raw/main/aGLP1_english.xlsx'
+# Initialize the cache
+cache = Cache(app.server, config={
+    'CACHE_TYPE': 'SimpleCache',
+    'CACHE_DEFAULT_TIMEOUT': 300
+})
+
+@cache.memoize()  # Cache the data for multiple callbacks
+def load_cleaned_data():
+    url1 = 'https://github.com/dogitosanchez/livrable/raw/main/aGLP1_english.xlsx'
+    cleaned_data = pd.read_excel(url1, sheet_name='Complet')
+    cleaned_data['Year'] = pd.to_datetime(cleaned_data['Notif'], errors='coerce', dayfirst=True).dt.year
+    return cleaned_data
+    
 url2 = 'https://github.com/dogitosanchez/livrable/raw/main/Insuline_anglais.xlsx'
-
-# Load the specific sheet 'Complet' from each file
-cleaned_data = pd.read_excel(url1, sheet_name='Complet')
 cleaned_data2 = pd.read_excel(url2, sheet_name='Complet')
-
-# Ensure 'Year' column is created
-cleaned_data['Year'] = pd.to_datetime(cleaned_data['Notif'], errors='coerce', dayfirst=True).dt.year.fillna(0).astype(int)
 cleaned_data2['Year'] = pd.to_datetime(cleaned_data2['Notif'], dayfirst=True).dt.year
 
 # Function to generate the interactive Plotly line graph for Insulin data
