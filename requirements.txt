@@ -8,7 +8,7 @@ clyent==1.2.1
 constantly==15.1.0
 cssselect==1.1.0
 cytoolz==0.11.0
-daal4py==2021.6.0
+daal4py==2023.2.0  # Update to a more recent version
 dash==2.17.0
 dash-bootstrap-components==1.6.0
 dash-core-components==2.0.0
@@ -27,7 +27,6 @@ mkl-service==2.4.0
 mpmath==1.2.1
 munkres==1.1.4
 mypy-extensions==0.4.3
-navigator-updater==0.3.0
 openpyxl==3.1.5
 pandas==1.4.4
 patsy==0.5.2
