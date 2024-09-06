@@ -44,8 +44,7 @@ def create_plotly_insulin_line_graph():
 
     fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases', 
                       title={'x':0.5, 'xanchor': 'center'},  # Center the title
-                      height=500, width=600, autosize=True,  # Enable auto-sizing based on screen
-                      responsive=True )  # Adjust height and width
+                      height=500, width=600, autosize=True )  # Adjust height and width
 
     return fig
 
@@ -66,8 +65,7 @@ def create_plotly_line_graph():
 
     fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases', 
                       title={'x':0.5, 'xanchor': 'center'},  # Center the title
-                      height=500, width=600, autosize=True,  # Enable auto-sizing based on screen
-                      responsive=True )  # Adjust height and width
+                      height=500, width=600, autosize=True)  # Adjust height and width
 
     return fig
 
@@ -289,10 +287,9 @@ app.layout = html.Div([
                 'display': 'inline-block', 
                 'margin': '0', 
                 'color': 'white', 
-                'fontSize': 'clamp(16px, 5vw, 30px)',  # Use clamp for responsive font size
+                'fontSize': '25px',  # Use clamp for responsive font size
                 'textAlign': 'center',  # Center align text
-                'flex': '1',  # Take up remaining space for centering
-                'whiteSpace': 'normal',# Take up remaining space for centering
+                'flex': '1'# Take up remaining space for centering
             }),
     ], style={
         'backgroundColor': 'rgb(30, 26, 25)', 
