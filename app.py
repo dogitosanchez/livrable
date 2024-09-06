@@ -287,7 +287,7 @@ app.layout = html.Div([
                 'display': 'inline-block', 
                 'margin': '0', 
                 'color': 'white', 
-                'fontSize': '25px',  # Use clamp for responsive font size
+                'fontSize': '20px',  # Use clamp for responsive font size
                 'textAlign': 'center',  # Center align text
                 'flex': '1'# Take up remaining space for centering
             }),
