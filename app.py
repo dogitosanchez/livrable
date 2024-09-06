@@ -289,9 +289,10 @@ app.layout = html.Div([
                 'display': 'inline-block', 
                 'margin': '0', 
                 'color': 'white', 
-                'fontSize': '30px',  # Text size
-                'textAlign': 'right',  # Center align text
+                'fontSize': 'clamp(16px, 5vw, 30px)',  # Use clamp for responsive font size
+                'textAlign': 'center',  # Center align text
                 'flex': '1',  # Take up remaining space for centering
+                'whiteSpace': 'normal',# Take up remaining space for centering
             }),
     ], style={
         'backgroundColor': 'rgb(30, 26, 25)', 
