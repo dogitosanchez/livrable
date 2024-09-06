@@ -56,7 +56,7 @@ def create_plotly_insulin_line_graph():
 # Function to generate the interactive Plotly line graph
 def create_plotly_line_graph():
     # Count the number of cases per year
-    filtered_data = cleaned_data[cleaned_data['Year'] >= 2011]
+    filtered_data = cleaned_data.copy()
     year_count = filtered_data['Year'].value_counts().sort_index()
     # Create the Plotly figure
     fig = px.line(year_count, x=year_count.index, y=year_count.values, markers=True, 
@@ -68,7 +68,7 @@ def create_plotly_line_graph():
     # Update hover label properties
     fig.update_traces(hoverlabel=dict(bgcolor="coral", font_size=16, font_family="Arial"))
 
-    fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases', 
+    fig.update_layout(xaxis_title='Year', yaxis_title='Number of cases', xaxis=dict(range=[2004, 2024]),
                       title={'x':0.5, 'xanchor': 'center'},  # Center the title
                       height=500, autosize=True)  # Adjust height and width
 
